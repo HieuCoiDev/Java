@@ -1,0 +1,166 @@
+package frm;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class MainForm extends JFrame {
+
+    private JMenuBar menuBar;
+    private JMenu adminMenu, manageInfoMenu, searchMenu, transactionMenu, reportMenu, loginInfoMenu;
+    JMenuItem adminItem;
+    JMenuItem manageBooksItem;
+    JMenuItem manageEmployeesItem;
+    JMenuItem manageReadersItem;
+    JMenuItem eventItem;
+    JMenuItem facilitiesItem;
+    private JMenuItem searchBooksItem, searchReadersItem, searchEmployeesItem;
+    JMenuItem borrowTicketItem;
+	JMenuItem returnTicketItem;
+    JMenuItem statsItem;
+    private JMenuItem changePasswordItem;
+    JMenuItem logoutItem;
+    JMenuItem exitItem;
+    private JToolBar toolBar;
+    JButton adminButton;
+	JButton readerButton;
+	JButton employeeButton;
+	JButton bookButton;
+	JButton borrowButton;
+	JButton returnButton;
+	JButton statsButton;
+    private JLabel imageLabel;
+
+    public MainForm() {
+        setTitle("Main Form");
+        setSize(1029, 700);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+
+        // Create menu bar
+        menuBar = new JMenuBar();
+
+        // Admin menu
+        adminMenu = new JMenu("Quản lý tài khoản");
+        adminItem = new JMenuItem("Admin");
+        adminMenu.add(adminItem);
+
+        // Manage Information Menu
+        manageInfoMenu = new JMenu("Quản lý thông tin");
+        manageBooksItem = new JMenuItem("Quản lý sách");
+        manageEmployeesItem = new JMenuItem("Quản lý nhân viên");
+        manageReadersItem = new JMenuItem("Quản lý độc giả");
+        eventItem = new JMenuItem("Sự kiện");
+        facilitiesItem = new JMenuItem("Cơ sở vật chất");
+
+        manageInfoMenu.add(manageBooksItem);
+        manageInfoMenu.add(manageEmployeesItem);
+        manageInfoMenu.add(manageReadersItem);
+        manageInfoMenu.add(eventItem);
+        manageInfoMenu.add(facilitiesItem);
+
+        // Search Information Menu
+        searchMenu = new JMenu("Tìm kiếm thông tin");
+        searchBooksItem = new JMenuItem("Tìm kiếm sách");
+        searchReadersItem = new JMenuItem("Tìm kiếm độc giả");
+        searchEmployeesItem = new JMenuItem("Tìm kiếm nhân viên");
+        searchMenu.add(searchBooksItem);
+        searchMenu.add(searchReadersItem);
+        searchMenu.add(searchEmployeesItem);
+
+        // Transaction Menu
+        transactionMenu = new JMenu("Quản lý Mượn - Trả");
+        borrowTicketItem = new JMenuItem("Phiếu mượn");
+        returnTicketItem = new JMenuItem("Phiếu trả");
+        transactionMenu.add(borrowTicketItem);
+        transactionMenu.add(returnTicketItem);
+
+        // Report Menu
+        reportMenu = new JMenu("Thống kê");
+        statsItem = new JMenuItem("Thống kê");
+        reportMenu.add(statsItem);
+
+        // Login Information Menu
+        loginInfoMenu = new JMenu("Thông tin đăng nhập");
+        changePasswordItem = new JMenuItem("Đổi mật khẩu");
+        logoutItem = new JMenuItem("Đăng xuất");
+        exitItem = new JMenuItem("Thoát");
+        loginInfoMenu.add(changePasswordItem);
+        loginInfoMenu.add(logoutItem);
+        loginInfoMenu.addSeparator();
+        loginInfoMenu.add(exitItem);
+
+        // Add menus to menu bar
+        menuBar.add(adminMenu);
+        menuBar.add(manageInfoMenu);
+        menuBar.add(searchMenu);
+        menuBar.add(transactionMenu);
+        menuBar.add(reportMenu);
+        menuBar.add(loginInfoMenu);
+
+        setJMenuBar(menuBar);
+
+        // Create tool bar
+        toolBar = new JToolBar();
+
+        // Add buttons to toolbar
+        adminButton = new JButton("Admin");
+        readerButton = new JButton("Độc giả");
+        employeeButton = new JButton("Nhân viên");
+        bookButton = new JButton("Sách");
+        borrowButton = new JButton("Mượn sách");
+        returnButton = new JButton("Trả sách");
+        statsButton = new JButton("Thống kê");
+
+        toolBar.add(adminButton);
+        toolBar.add(readerButton);
+        toolBar.add(employeeButton);
+        toolBar.add(bookButton);
+        toolBar.add(borrowButton);
+        toolBar.add(returnButton);
+        toolBar.add(statsButton);
+
+        add(toolBar, "North");
+
+        // Create a JLabel to display an image
+        ImageIcon imageIcon = new ImageIcon("src/images/BGQLSach.jpg");  // Replace with your image path
+        Image image = imageIcon.getImage();
+        int width = getWidth();
+        int height = getHeight();
+        Image resizedImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH);
+        ImageIcon resizedIcon = new ImageIcon(resizedImage);
+        imageLabel = new JLabel(resizedIcon);
+        imageLabel.setBounds(0, 0, width, height);
+        add(imageLabel, BorderLayout.CENTER);
+
+        // Create an instance of the XuLy event handler class
+        XuLy xuly = new XuLy(this);
+
+        // Attach the event handler to menu items
+        adminItem.addActionListener(xuly);
+        manageBooksItem.addActionListener(xuly);
+        manageEmployeesItem.addActionListener(xuly);
+        manageReadersItem.addActionListener(xuly);
+        borrowTicketItem.addActionListener(xuly);
+        returnTicketItem.addActionListener(xuly);
+        statsItem.addActionListener(xuly);
+
+        // Attach the event handler to toolbar buttons
+        adminButton.addActionListener(xuly);
+        readerButton.addActionListener(xuly);
+        employeeButton.addActionListener(xuly);
+        bookButton.addActionListener(xuly);
+        borrowButton.addActionListener(xuly);
+        returnButton.addActionListener(xuly);
+        statsButton.addActionListener(xuly);
+    }
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                new MainForm().setVisible(true);
+            }
+        });
+    }
+}
