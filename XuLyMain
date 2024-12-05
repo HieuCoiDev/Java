@@ -1,0 +1,60 @@
+package frm;
+
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+public class XuLy implements ActionListener {
+
+    private MainForm frmMain;
+
+    public XuLy(MainForm mainForm) {
+        this.frmMain = mainForm;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // Handling menu item and button events
+        if (e.getSource() == frmMain.adminItem) {
+            openAdminForm();
+        } else if (e.getSource() == frmMain.manageBooksItem) {
+            openManageBooksForm();
+        } //else if (e.getSource() == frmMain.manageEmployeesItem) {
+      //      openManageEmployeesForm();
+      //  } else if (e.getSource() == frmMain.manageReadersItem) {
+      //      openManageReadersForm();
+      //  } else if (e.getSource() == frmMain.borrowTicketItem) {
+       //     openBorrowTicketForm();
+      //  } else if (e.getSource() == frmMain.returnTicketItem) {
+       //     openReturnTicketForm();
+      //  } else if (e.getSource() == frmMain.statsItem) {
+        //    openStatisticsForm();
+      // } else if (e.getSource() == frmMain.adminButton) {
+         //   openAdminForm();
+       // } else if (e.getSource() == frmMain.readerButton) {
+       //     openManageReadersForm();
+      //  } else if (e.getSource() == frmMain.employeeButton) {
+       //     openManageEmployeesForm();
+      //  } else if (e.getSource() == frmMain.bookButton) {
+           // openManageBooksForm();
+      //  } else if (e.getSource() == frmMain.borrowButton) {
+      //      openBorrowTicketForm();
+     //   } else if (e.getSource() == frmMain.returnButton) {
+       //     openReturnTicketForm();
+      //  } else if (e.getSource() == frmMain.statsButton) {
+          //  openStatisticsForm();
+       // }
+    }
+    private void openAdminForm() {
+		frmAdminDN manageBooksForm = new frmAdminDN();
+	   ;
+	    frmMain.dispose();  // Optional: Close the main form when opening the new form
+}
+    private void openManageBooksForm() {
+    		frmSach manageBooksForm = new frmSach();
+    		manageBooksForm.setVisible(true);
+    	    frmMain.dispose();  // Optional: Close the main form when opening the new form
+    }
+
+
+}
